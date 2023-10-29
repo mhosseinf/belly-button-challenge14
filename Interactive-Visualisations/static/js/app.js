@@ -72,7 +72,7 @@ function dropdownChange(data, selectedOTU) {
     createBarChart(data, selectedOTU);
     createBubbleChart(data, selectedOTU);
     displayDemographicInfo(data, selectedOTU);
-    // updateGaugeChart(data, selectedOTU);
+    CreateGaugeChart(data, selectedOTU);
 }
 
 // Function to display sample metadata for the displayDemographicInfo
@@ -127,7 +127,7 @@ function init() {
         createBarChart(data, otuIds[0]);
         createBubbleChart(data, otuIds[0]);
         displayDemographicInfo(data, otuIds[0]);
-        // updateGaugeChart(data, otuIds[0]);
+        CreateGaugeChart(data, otuIds[0]);
     });
 }
 
