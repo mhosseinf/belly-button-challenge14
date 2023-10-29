@@ -4,7 +4,7 @@
 
 This repository contains code for creating interactive web visualisations of OTU data from a JSON source. The visualisation includes bar charts, bubble charts, and sample metadata displays. Additionally, it features a separate bonus file that generates a gauge chart with specific functionality.
 
-Code Structure
+### Code Structure
 The code is structured as follows:
 
 index.html
@@ -39,10 +39,10 @@ The separate bonus.js file is part of the bonus feature and provides an alternat
 It includes a digital display of washing frequency.
 The colours of the gauge chart are more distinct to represent different levels.
 
-Interaction
+### Interaction
 While app.js handles the main interactive web visualisations, bonus.js provides an alternative implementation of the gauge chart. 
 
-How to Use
+### How to Use
 Open index.html in your web browser.
 
 Select an OTU from the dropdown menu.
