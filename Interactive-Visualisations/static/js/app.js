@@ -1,24 +1,21 @@
 // Function to create the bar chart
 function createBarChart(data, selectedOTU) {
-    // Find the selected OTU data from the samples array
-    let otus = data.samples.filter(sample => sample.id === selectedOTU);
-
-    // Sort the otus in descending order based on otu_ids
-    otus.sort((a, b) => b.otu_ids - a.otu_ids);
-
-    // Get the top 10 OTU IDs, sample values, and labels
-    let topOTUs = otus.slice(0, 10);
+    console.log("Selected OTU data:", data); // Log selected OTU data
     
-    // Extract the necessary data for the bar chart
-    let otuIds = topOTUs.map(otu => `OTU ${otu.otu_ids}`);
-    let sampleValues = topOTUs.map(otu => otu.sample_values);
-    let otuLabels = topOTUs.map(otu => otu.otu_labels);
+    // Find the selected OTU data from the samples array using filter
+    let otus = data.samples.filter(sample => sample.id === selectedOTU)[0];
+    console.log("Selected OTU:", otus); // Log selected OTU
+    
+    // Get the top 10 OTU IDs in reverse order
+    let topOTUs = otus.otu_ids.slice(0, 10).reverse();
+    // Get the top 10 OTU labels in reverse order
+    let topLabels = otus.otu_labels.slice(0, 10).reverse();
 
     // Define the trace for the bar chart
     let trace = {
-        x: sampleValues,
-        y: otuIds,
-        text: otuLabels,
+        x: otus.sample_values.slice(0, 10).reverse(),
+        y: topOTUs.map(otuId => `OTU ${otuId}`),
+        text: topLabels, // Set otu_labels as hover text
         type: 'bar',
         orientation: 'h',
     };
@@ -33,13 +30,12 @@ function createBarChart(data, selectedOTU) {
     // Create the bar chart using Plotly
     Plotly.newPlot("bar", dataToPlot, layout);
 }
-
 // Function to handle dropdown change
 function dropdownChange(data, selectedOTU) {
     createBarChart(data, selectedOTU);
-    updateBubbleChart(data, selectedOTU);
-    displayDemographicInfo(data, selectedOTU);
-    updateGaugeChart(data, selectedOTU);
+    // updateBubbleChart(data, selectedOTU);
+    // displayDemographicInfo(data, selectedOTU);
+    // updateGaugeChart(data, selectedOTU);
 }
 
 // Define the URL to fetch the data
@@ -72,9 +68,9 @@ function init() {
 
         // Create the initial bar chart, bubble chart, demographic info, and gauge chart with the first OTU
         createBarChart(data, otuIds[0]);
-        updateBubbleChart(data, otuIds[0]);
-        displayDemographicInfo(data, otuIds[0]);
-        updateGaugeChart(data, otuIds[0]);
+        // updateBubbleChart(data, otuIds[0]);
+        // displayDemographicInfo(data, otuIds[0]);
+        // updateGaugeChart(data, otuIds[0]);
     })
 }
 
