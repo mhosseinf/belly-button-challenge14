@@ -71,8 +71,28 @@ function createBubbleChart(data, selectedOTU) {
 function dropdownChange(data, selectedOTU) {
     createBarChart(data, selectedOTU);
     createBubbleChart(data, selectedOTU);
-    // displayDemographicInfo(data, selectedOTU);
+    displayDemographicInfo(data, selectedOTU);
     // updateGaugeChart(data, selectedOTU);
+}
+
+// Function to display sample metadata for the displayDemographicInfo
+function displayDemographicInfo(data, selectedOTU) {
+    console.log("Selected OTU data:", data); 
+
+    let metadata = data.metadata.filter(item => item.id == selectedOTU)[0];
+    console.log("Selected metadata:", metadata);
+
+    let sampleMetadata = d3.select("#sample-metadata");
+
+    // Clear any existing metadata
+    sampleMetadata.html("");
+
+    // Iterate through the metadata and append each key-value pair
+    for (let [key, value] of Object.entries(metadata)) {
+        sampleMetadata
+            .append("p")
+            .text(`${key}: ${value}`);
+    }
 }
 
 // Define the URL to fetch the data
@@ -106,6 +126,8 @@ function init() {
         // Create the initial bar chart and bubble chart with the first OTU
         createBarChart(data, otuIds[0]);
         createBubbleChart(data, otuIds[0]);
+        displayDemographicInfo(data, otuIds[0]);
+        // updateGaugeChart(data, otuIds[0]);
     });
 }
 
