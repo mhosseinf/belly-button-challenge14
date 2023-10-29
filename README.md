@@ -1,7 +1,8 @@
 # belly-button-challenge14
 
 ##Interactive Web Visualisations
-This repository contains code for creating interactive web visualisations of OTU (Operational Taxonomic Unit) data from a JSON source. The visualisation includes bar charts, bubble charts, and sample metadata displays. Additionally, it features a separate bonus file that generates a gauge chart with specific functionality.
+
+This repository contains code for creating interactive web visualisations of OTU data from a JSON source. The visualisation includes bar charts, bubble charts, and sample metadata displays. Additionally, it features a separate bonus file that generates a gauge chart with specific functionality.
 
 Code Structure
 The code is structured as follows:
