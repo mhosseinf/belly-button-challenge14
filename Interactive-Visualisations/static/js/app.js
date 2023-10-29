@@ -1,3 +1,11 @@
+// Separate function to handle dropdown change
+function dropdownChange(data, selectedOTU) {
+    createBarChart(data, selectedOTU);
+    updateBubbleChart(data, selectedOTU);
+    displayDemographicInfo(data, selectedOTU);
+    updateGaugeChart(data, selectedOTU);
+}
+
 // Define the URL to fetch the data
 let url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
@@ -12,32 +20,21 @@ function init() {
         // Select the OTU dropdown element
         let otuDropdown = d3.select("#selDataset");
 
-        // Populate the dropdown with OTU options
+        // Populate the dropdown options with OTU values
         for (let i = 0; i < otuIds.length; i++) {
             let otuId = otuIds[i];
-        
             let option = otuDropdown.append("option");
             option.property("value", otuId);
             option.text(`OTU ${otuId}`);
         }
 
-        // Define event listener for dropdown change
-        otuDropdown.on("change", function() {
-            let selectedOTU = otuDropdown.property("value");
-            createBarChart(data, selectedOTU); // Update the bar chart
-            updateBubbleChart(data, selectedOTU); // Update the bubble chart
-            displayDemographicInfo(data, selectedOTU); // Update the demographic info
-            updateGaugeChart(data, selectedOTU); // Update the gauge chart
+        // Define event for dropdown change
+        dropdownMenu.on("change", function() {
+            let selectedOTU = dropdownMenu.property("value");
+            dropdownChange(data, selectedOTU); // Call the function to update charts
         });
 
-        // Create the initial bar chart, bubble chart, demographic info, and gauge chart with the first OTU
-        createBarChart(data, otuIds[0]);
-        updateBubbleChart(data, otuIds[0]);
-        displayDemographicInfo(data, otuIds[0]);
-        updateGaugeChart(data, otuIds[0]);
-    }).catch(error => {
-        console.error("Error loading data:", error);
-    });
+    })
 }
 
 // Call the initialization function
