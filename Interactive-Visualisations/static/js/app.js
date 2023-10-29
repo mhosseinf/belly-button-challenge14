@@ -78,7 +78,7 @@ function dropdownChange(data, selectedOTU) {
 // Function to display sample metadata for the displayDemographicInfo
 function displayDemographicInfo(data, selectedOTU) {
     console.log("Selected OTU data:", data); 
-
+ // Find the selected OTU data from the samples array using filter
     let metadata = data.metadata.filter(item => item.id == selectedOTU)[0];
     console.log("Selected metadata:", metadata);
 
