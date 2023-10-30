@@ -5,10 +5,10 @@ function createBarChart(data, selectedOTU) {
     let otus = data.samples.filter(sample => sample.id === selectedOTU)[0];
     console.log("Selected OTU:", otus); // Log selected OTU
     
-    // Sort the OTUs in descending order based on sample_values
-    otus.otu_ids.sort((a, b) => a - b);
-    otus.otu_labels.sort((a, b) => a - b);
-    otus.sample_values.sort((a, b) => a - b);
+    // // Sort the OTUs in descending order based on sample_values
+    // otus.otu_ids.sort((a, b) => a - b);
+    // otus.otu_labels.sort((a, b) => a - b);
+    // otus.sample_values.sort((a, b) => a - b);
 
 
     // Get the top 10 OTU IDs in reverse order
